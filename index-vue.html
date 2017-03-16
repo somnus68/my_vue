@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>第一天学习Vue--</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{message}}
+    </div>
+
+    <div id="app-2">
+      <!-- 元素节点 的 title 属性和 Vue实例 的 message 属性保持一致 -->
+      <span v-bind:title="message">
+        鼠标悬停几秒后查看此处动态绑定的提示信息！
+      </span>
+    </div>
+
+    <!-- 条件与循环 -->
+    <div id="app-3">
+      <p v-if="seen">now you can see me.</p>
+    </div>
+
+    <div id="app-4">
+      <ul>
+        <li v-for="todo in todos">
+          {{todo.text}}
+        </li>
+      </ul>
+    </div>
+
+    <!-- 处理用户输入 -->
+    <div id="app-5">
+      <p>{{message}}</p>
+      <button v-on:click="reverseMessage">逆转信息</button>
+    </div>
+
+    <div id="app-6">
+      <p>{{message}}</p>
+      <input v-model="message">
+    </div>
+  </body>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })
+
+    var app2 = new Vue({
+      el: '#app-2',
+      data:{
+        message: '页面加载于 ' + new Date()
+      }
+    })
+
+    var app3 = new Vue({
+      el: '#app-3',
+      data: {
+        seen: false
+      }
+    })
+
+    var app4 = new Vue({
+      el: '#app-4',
+      data: {
+        todos: [
+          { text: 'learn javascript' },
+          { text: 'learn Vue' },
+          { text: 'the project' }
+        ]
+      }
+
+    })
+    app4.todos.push({ text: 'new project' });
+
+    var app5 = new Vue({
+      el: '#app-5',
+      data: {
+        message: 'Hello Vue.js!'
+      },
+      methods: {
+        reverseMessage: function(){
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    })
+
+    var app6 = new Vue({
+      el: '#app-6',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })
+  </script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <title>Vue 组件模板</title>
+</head>
+<body>
+  <div id="app-7">
+    <ol>
+      <todo-item v-for="item in groceryList" v-bind:todo="item">
+
+      </todo-item>
+    </ol>
+  </div>
+
+
+</body>
+<script>
+  Vue.component('todo-item',{
+    // todo-item 组件接受一个 props 类似于一个自定义属性 这个属性名为 todo
+    // 将数据从父作用域传到子组件
+    props: ['todo'],
+    template: '<li>{{ todo.text }}</li>'
+  })
+
+  var app7 = new Vue({
+    el: '#app-7',
+    data: {
+      groceryList: [
+        { text: 'vegetable' },
+        { text: 'cheese' },
+        { text: 'anything to eat' }
+      ]
+    }
+  })
+</script>
+</html>
