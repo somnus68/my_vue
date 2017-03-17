@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <title>vue--on</title>
+</head>
+<body>
+  <!-- 方法事件处理器 -->
+  <div id="exp-1">
+    <button v-on:click="greet">Greet</button>
+  </div>
+
+  <!-- 内联处理器方法 -->
+  <div id="exp-2">
+    <button v-on:click="say('hi')">Say hi</button>
+    <button @click="say('what')">Say what</button>
+  </div>
+
+  <div @click.ctrl="doSomething" id="exp-3">do something</div>
+</body>
+<script>
+  var exp1 = new Vue({
+    el: '#exp-1',
+    data: {
+      name: 'Vue.js'
+    },
+    methods: {
+      greet: function(event){
+        alert('Hello' + this.name + '!');
+        alert(event.target.tagName)
+      }
+    }
+  })
+
+  // exp1.greet();
+
+  var exp2 = new Vue({
+    el: '#exp-2',
+    methods: {
+      say: function(message){
+        alert(message);
+      }
+    }
+  })
+
+  var exp3 = new Vue({
+    el: '#exp-3',
+    methods: {
+      doSomething: function(){
+        alert('ctrl')
+      }
+    }
+  })
+</script>
+</html>
